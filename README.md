@@ -1,27 +1,23 @@
-# Laporan Proyek Analisis Sentimen Mahasiswa
+# Analisis Sentimen Mahasiswa
 
-### Identitas
-**Nama/NIM:** NIM H1D023097  
-**Institusi:** Informatika Universitas Jenderal Soedirman (Unsoed)
+Proyek Analisis Sentimen Mahasiswa adalah sistem pemrosesan bahasa alami (NLP) untuk mengklasifikasikan dan memetakan umpan balik mahasiswa secara otomatis ke dalam kategori spesifik. Proyek ini dibangun menggunakan Python, Pandas, dan model DistilBERT dari library Transformers Hugging Face.
 
 ---
 
-### Dokumentasi Proyek
+### Metodologi (Gimana Cara Kerjanya?)
+Proyek ini ngikutin alur kerja Machine Learning dan Data Science yang simpel tapi efektif:
+* **Tarik Data:** Kita download dataset *Student Feedback* langsung dari Kaggle pakai API `opendatasets`.
+* **Bersih-bersih Data (Preprocessing):** Load data dari file Excel, terus di-restrukturisasi (pakai trik pivot/melt) biar kolom teks sama kategorinya pas selaras. Nggak lupa teksnya juga dibersihin dari karakter-karakter yang aneh.
+* **Cek Sentimen:** Di sini kita pakai model Transformer buat nge-klasifikasiin feedback mahasiswa, apakah itu masuknya *POSITIVE* atau *NEGATIVE*.
+* **Zero-Shot Classification:** Ini bagian kerennya! Keluhan mahasiswa langsung dipetakan ke sub-kategori spesifik (misal: *Punctuality*, *Material Quality*, dll.) tanpa perlu repot ngelatih ulang model dari nol.
+* **Visualisasi Kece:** Biar gampang dibaca, hasilnya disajikan jadi grafik distribusi dan pemetaan *heatmap* masalah yang interaktif pakai Seaborn dan Matplotlib.
 
-#### 1. Metodologi
-Proyek ini mengikuti alur kerja pemrosesan data dan pembelajaran mesin sebagai berikut:
-*   **Pengambilan Data:** Mengunduh dataset *Student Feedback* dari Kaggle menggunakan API `opendatasets`.
-*   **Eksplorasi & Preprocessing:** Memuat data dari file Excel, melakukan restrukturisasi data (pivot/melt) agar kolom teks dan kategori selaras, serta membersihkan teks dari karakter khusus.
-*   **Analisis Sentimen:** Mengklasifikasikan umpan balik menjadi POSITIVE atau NEGATIVE menggunakan model Transformer.
-*   **Klasifikasi Zero-Shot:** Memetakan keluhan mahasiswa ke dalam sub-kategori audit spesifik (seperti Punctuality, Material Quality, dll.) tanpa pelatihan ulang model.
-*   **Visualisasi:** Menggunakan Seaborn dan Matplotlib untuk menyajikan distribusi sentimen dan pemetaan masalah dalam bentuk heatmap.
+### Tentang Dataset
+* **Sumber:** Datanya diambil dari [Student Feedback Dataset di Kaggle](https://www.kaggle.com/datasets/brarajit18/student-feedback-dataset).
+* **Isinya Apa Aja?** Dataset ini penuh dengan feedback teks dari mahasiswa soal pengajaran (*teaching*), materi kuliah (*course content*), ujian (*examination*), praktikum lab (*lab work*), fasilitas perpus (*library*), sampai kegiatan ekstrakurikuler.
 
-#### 2. Dataset
-*   **Sumber:** [Student Feedback Dataset (Kaggle)](https://www.kaggle.com/datasets/brarajit18/student-feedback-dataset).
-*   **Struktur:** Dataset berisi feedback tekstual mengenai pengajaran (*teaching*), konten kursus (*course content*), pemeriksaan (*examination*), kerja lab (*lab work*), fasilitas perpustakaan (*library*), dan kegiatan ekstrakurikuler.
-
-#### 3. Alasan Teknis Pemilihan Model
-Model **DistilBERT** (khususnya `distilbert-base-uncased-finetuned-sst-2-english`) dipilih karena:
-*   **Efisiensi Sumber Daya:** DistilBERT 40% lebih kecil dan 60% lebih cepat daripada model BERT standar, namun tetap mempertahankan sekitar 97% kinerjanya.
-*   **Kesesuaian Perangkat:** Sangat cocok dijalankan pada environment terbatas tanpa memerlukan waktu inferensi yang lama.
-*   **Akurasi:** Memberikan keseimbangan yang optimal antara kecepatan pemrosesan teks dan akurasi klasifikasi sentimen.
+### Kenapa Pilih DistilBERT?
+Model **DistilBERT** (spesifiknya versi `distilbert-base-uncased-finetuned-sst-2-english`) dipilih bukan tanpa alasan:
+* **Hemat Resource:** Ukurannya 40% lebih kecil dan 60% lebih ngebut dari model BERT standar, tapi tetep bisa pertahanin sekitar 97% kinerjanya.
+* **Ramah Device:** Enak banget buat dijalanin di *environment* yang terbatas karena nggak butuh waktu inferensi yang lama.
+* **Akurat:** Ngasih *sweet spot* alias keseimbangan yang pas banget antara kecepatan pemrosesan teks dan keakuratan saat klasifikasi sentimen.
