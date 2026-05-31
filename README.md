@@ -4,7 +4,7 @@ Proyek Analisis Sentimen Mahasiswa adalah sistem pemrosesan bahasa alami (NLP) u
 
 ---
 
-### Metodologi (Gimana Cara Kerjanya?)
+### Metodologi
 Proyek ini ngikutin alur kerja Machine Learning dan Data Science yang simpel tapi efektif:
 * **Tarik Data:** Kita download dataset *Student Feedback* langsung dari Kaggle pakai API `opendatasets`.
 * **Bersih-bersih Data (Preprocessing):** Load data dari file Excel, terus di-restrukturisasi (pakai trik pivot/melt) biar kolom teks sama kategorinya pas selaras. Nggak lupa teksnya juga dibersihin dari karakter-karakter yang aneh.
